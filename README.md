@@ -14,7 +14,10 @@
 - math/rand
 
 - gorm
+- mongo
 - goquery
 - ini
 
 - 项目结构组织
+
+- 学习使用协程进行快速爬取

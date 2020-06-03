@@ -1,7 +1,6 @@
 package spider
 
 import (
-	"fmt"
 	"log"
 	"regexp"
 	"strconv"
@@ -35,7 +34,6 @@ func GetPages(url string) []Page {
 // ParserPages 解析页面数据
 func ParserPages(doc *goquery.Document) (pages []Page) {
 	pages = append(pages, Page{Page: 1, URL: ""})
-	fmt.Println(doc.Find("#content"))
 	doc.Find("#content .paginator > a").Each(func(i int, s *goquery.Selection) {
 		page, _ := strconv.Atoi(s.Text())
 		url, _ := s.Attr("href")

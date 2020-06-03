@@ -19,6 +19,7 @@ var (
 func init() {
 	var (
 		err                                             error
+		makeMigration                                   bool
 		dbType, dbName, user, passwd, host, tablePrefix string
 	)
 	sec, err := setting.Cfg.GetSection("datebase")
@@ -31,6 +32,7 @@ func init() {
 	passwd = sec.Key("PASSWD").String()
 	host = sec.Key("HOST").String()
 	tablePrefix = sec.Key("TABLE_PREFIX").String()
+	makeMigration = sec.Key("MAKE_MIGRATION").MustBool(false)
 
 	DB, err = gorm.Open(dbType, fmt.Sprintf(
 		"%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local",
@@ -48,6 +50,10 @@ func init() {
 	// gorm 默认表名的一个处理函数
 	gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
 		return tablePrefix + defaultTableName
+	}
+
+	if makeMigration {
+		migration(DB)
 	}
 }
 
