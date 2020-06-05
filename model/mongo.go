@@ -45,7 +45,7 @@ func init() {
 	}
 	log.Println("connect to Mongo")
 
-	filter := bson.D{{Key: "title", Value: "肖申克的救赎"}}
+	// filter := bson.D{{Key: "title", Value: "肖申克的救赎"}}
 	// 或者使用这种方式，优选第一种方式
 	// filter := bson.D{primitive.E{Key: "title", Value: "肖申克的救赎"}}
 	// GetOneMovie(&filter)

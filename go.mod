@@ -19,4 +19,5 @@ replace (
 	github.com/leeexing/douban-movie/setting => E:/Leeing/go/repository/douban-movie/setting
 	github.com/leeexing/douban-movie/spider => E:/Leeing/go/repository/douban-movie/spider
 	github.com/leeexing/douban-movie/util => E:/Leeing/go/repository/douban-movie/util
+	github.com/leeexing/douban-movie/logging => E:/Leeing/go/repository/douban-movie/logging
 )

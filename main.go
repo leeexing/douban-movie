@@ -6,23 +6,14 @@ import (
 	"strings"
 	"time"
 
-	"github.com/leeexing/douban-movie/model"
 	"github.com/leeexing/douban-movie/spider"
+	"github.com/leeexing/douban-movie/model"
 )
 
 var (
 	// BaseURL 基础爬虫路径
 	BaseURL = "https://movie.douban.com/top250"
 )
-
-// Add 添加数据
-func Add(movies []model.DoubanMovie) {
-	for index, movie := range movies {
-		log.Printf("index: %d >>> movie: %#v ", index, movie)
-		model.AddMovie(&movie)
-		model.SaveMovieToMongo(&movie)
-	}
-}
 
 // Start 开始执行
 func Start() {
@@ -40,7 +31,7 @@ func Start() {
 		}
 	}
 
-	Add(movies)
+	model.SaveMovieToSQL(movies)
 
 	fmt.Println("end !!!")
 }
@@ -83,8 +74,8 @@ L:
 func main() {
 	start := time.Now()
 
-	// Start()
-	UseChan()
+	Start()
+	// UseChan()
 
 	log.Println("总共花费时间：", time.Since(start))
 
